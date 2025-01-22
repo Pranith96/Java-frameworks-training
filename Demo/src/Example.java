@@ -16,7 +16,7 @@ public class Example {
 		System.out.println("Welcome to java");
 		
 		Example ex1 = new Example();
-		ex1.hi();
+		ex1.hi();		
 	}
 
 	// void method name hi
