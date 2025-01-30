@@ -1,0 +1,19 @@
+less than 39 marks ======> FAIL
+Marks between 40 to 59 ===> C
+Marks between 60 - 74 ==> B
+Marks between 75-90 ==> A
+marks between 90-100 ==> A+ 
+
+other then this any other data =====> Invalid
+
+
+//		if (ch == 'a' || ch == 'A') {
+//			System.out.println("Vowels");
+//		} else if (ch == 'e' || ch == 'E') {
+//			System.out.println("Vowels");
+//		}else{
+//			System.out.println("Consonants");
+//		}
+
+
+Switch case with OR conditions and AND conditions
