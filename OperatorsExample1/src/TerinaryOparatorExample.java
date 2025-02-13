@@ -9,7 +9,16 @@ public class TerinaryOparatorExample {
 		String result1 = (a < 5) ? "Hello" : "Hi";
 		System.out.println(result1);
 
-//		String result2 = (a < 5) ? add() : sum();
-//		System.out.println(result2);
+		String result2 = (a < 5) ? add() : sum();
+		System.out.println(result2);
+	}
+
+	public static String sum() {
+		String s = "Sum";
+		return s;
+	}
+
+	public static String add() {
+		return "ADD";
 	}
 }

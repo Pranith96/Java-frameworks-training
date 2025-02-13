@@ -8,10 +8,10 @@ public class ArithmeticOperator {
 		System.out.println(z);
 
 		int a = y - x;
-		System.out.println(a);
+		System.out.println(a); //10
 
 		int p = y * x;
-		System.out.println(p);
+		System.out.println(p); //200
 		int q = y / x; //   20/10 = 2 
 		System.out.println(q);
 

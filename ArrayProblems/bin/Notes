@@ -1,0 +1,23 @@
+program to print array elements in reverse order-------------------------- solved
+program to print array elements at odd position-------------------------- solved
+program to print smallest number in an array----------------------------- hold
+program to print sum of all the array elements--------------------------solved
+program to print sum of all even position of the array elements--------------------------
+Find largest Array element ex: [1,6,7,8,3,4] o/p - 8 --------------------------
+Find largest Array element without sorting ex: [1,6,7,8,3,4] o/p - 8 ------------------- hold
+find 2nd largest array element with sorting -------------------------------------
+find 2nd largest array element without sorting ----------------------------- hold
+program to copy one array elements to another array--------------------------------
+Array program to print 2D array---------------- Solved
+program to check whether given 2 arrays are same or not--------------------------------------------------------
+program to find index of array element ex: [1,6,7,8,3,4, 7] value = 7 output:index positions [2, 6]
+program to find find element based on index value ex:[1,6,7,8,3,4,7] index = 3 o/p --> 8---------------------------------------
+program to sort Array elements with sort methods ----------------------------------------------
+program to sort Array elements without sort methods ----hold
+program for linear search----------------------------
+program for binary search------------------------------------------------ hold
+program for bubble sort---------------------------------------------- 
+program for Insertion sort--------------------------------------------hold
+program for selection sort---------------------------------------------------hold
+program to print array element in descending order---------------------------------------hold
+program to find frequency of each element in an array----------------------- hold

@@ -14,10 +14,16 @@ public class RelationOperator {
 		boolean result2 = a > b; // 10 > 20 = false;
 		System.out.println(result2);
 
-		boolean result3 = a == b;
+		boolean result3 = (a == b);
 		System.out.println(result3);
 
 		boolean result4 = a != b;
 		System.out.println(result4);
+
+		boolean result5 = (a <= b);
+		System.out.println(result5);
+		boolean result6 = (a >= b);
+		System.out.println(result6);
+
 	}
 }
