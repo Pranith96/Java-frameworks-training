@@ -21,3 +21,23 @@ program for Insertion sort--------------------------------------------hold
 program for selection sort---------------------------------------------------hold
 program to print array element in descending order---------------------------------------hold
 program to find frequency of each element in an array----------------------- hold
+
+
+
+Swapping 2 values ex: a= 10, b = 20 output a = 20, b = 10---------------------------------------------
+reverse of a number ex: 123 ouput 321-------------------------------------------------------practice
+Armstrong number --------------------------------------------------------------practice
+ex:
+input:153
+Output: Yes
+Explanation: 153 is an Armstrong number, 1*1*1 + 5*5*5 + 3*3*3 = 153
+Input: 120
+Output: No
+Explanation: 120 is not a Armstrong number, 1*1*1 + 2*2*2 + 0*0*0 = 9
+Input: 1253
+Output: No
+Explanation: 1253 is not a Armstrong Number, 1*1*1*1 + 2*2*2*2 + 5*5*5*5 + 3*3*3*3 = 723
+Input: 1634
+Output: Yes
+Explanation: 1*1*1*1 + 6*6*6*6 + 3*3*3*3 + 4*4*4*4 = 1634
+sum of given number ex: 123 output : 1+2+3 = 6----------------------------------------------------- practice
