@@ -9,6 +9,26 @@ public class Student {
 
 	private String status;
 
+	private Address address;
+
+	private College college;
+
+	public College getCollege() {
+		return college;
+	}
+
+	public void setCollege(College college) {
+		this.college = college;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -43,6 +63,26 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", status=" + status + "]";
+		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", status=" + status + ", address=" + address
+				+ ", college=" + college + "]";
+	}
+
+	public Student() {
+
+	}
+
+	public Student(int id, String name, int age, String status) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.status = status;
+	}
+
+	public Student(int id, String name, int age, String status, Address address) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.status = status;
+		this.address = address;
 	}
 }
