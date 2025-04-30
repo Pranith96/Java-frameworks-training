@@ -34,14 +34,14 @@ public class Example {
 		Long l6 = new Long(100L);
 		long l7 = l6;
 		
-		Student d1 = new Student();
-		Student d2 = new Student();
-		Student d3 = new Student();
-		Student[] s = new Student[3];
-		s[0] = d1;
-		s[1] = d2;
-		s[2] = d3;
-		Student[] s1 = {d1,d2,d3};
-		System.out.println(Arrays.toString(s));
+//		Student d1 = new Student();
+//		Student d2 = new Student();
+//		Student d3 = new Student();
+//		Student[] s = new Student[3];
+//		s[0] = d1;
+//		s[1] = d2;
+//		s[2] = d3;
+//		Student[] s1 = {d1,d2,d3};
+//		System.out.println(Arrays.toString(s));
 	}
 }
