@@ -1,0 +1,71 @@
+#Database --> Tables --> rows/columns --> Relational db
+
+create database student;
+use student;
+
+create table s_table (id int, name varchar(255), age int, mobile_number varchar(255));
+
+create table c_table(id int, name varchar(255), age int, mobile_number varchar(255), primary key(id));
+
+create table d_table(id int, name varchar(255), age int, mobile_number varchar(255) not null unique, primary key(id));
+
+desc s_table;
+desc c_table;
+desc d_table;
+
+insert into s_table (id, name, age, mobile_number) values (1, 'ABC', 20, '1234567890');
+insert into s_table (id, name, age, mobile_number) values (2, 'XYZ', 22, '1234567899');
+insert into s_table (id, name, age, mobile_number) values (3, 'CPX', 20, '1234567299');
+insert into s_table (id, name, age, mobile_number) values (4, 'TUU', 21, '1234567199');
+insert into s_table (id, name, age, mobile_number) values (5, 'XSDSYZ', 24, '1234567899');
+
+
+select * from s_table;
+
+insert into c_table (id, name, age, mobile_number) values (1, 'ABC', 20, '1234567890');
+insert into c_table (id, name, age, mobile_number) values (2, 'XYZ', 22, '1234567899');
+insert into c_table (id, name, age, mobile_number) values (3, 'CPX', 20, '1234567299');
+insert into c_table (id, name, age, mobile_number) values (4, 'TUU', 21, '1234567199');
+insert into c_table (id, name, age, mobile_number) values (5, 'XSDSYZ', 24, '1234567899');
+insert into c_table (id, name, age, mobile_number) values (null, 'XSDSYZ', 24, '1234567899');
+
+select * from c_table;
+
+insert into d_table (id, name, age, mobile_number) values (1, 'ABC', 20, '1234567890');
+insert into d_table (id, name, age, mobile_number) values (2, 'XYZ', 22, '1234567899');
+insert into d_table (id, name, age, mobile_number) values (3, 'CPX', 20, '1234567299');
+insert into d_table (id, name, age, mobile_number) values (4, 'TUU', 21, '1234567199');
+insert into d_table (id, name, age, mobile_number) values (5, 'XSDSYZ', 24, '1224567899');
+insert into d_table (id, name, age, mobile_number) values (5, 'XSDSYZ', 24, null);
+
+select * from d_table;
+
+select * from d_table where id = 1;
+select * from d_table where age = 20;
+
+select * from d_table where id = 1 and age = 20;
+select * from d_table where id = 1 or age = 20;
+
+select * from d_table where not id = 1;
+select * from d_table order by id asc;
+select * from d_table order by id desc;
+select * from d_table order by age desc;
+
+select * from d_table where age = 20 order by id desc;
+
+select * from d_table where id in ( 1, 5, 4);
+select * from d_table where id not in ( 1, 5);
+
+
+update d_table set name = 'bhanu' where id = 2;
+
+update d_table set name = 'hjda', age = 23  where id = 2;
+
+delete from d_table where id = 5;
+
+delete from s_table where age = 20;
+
+truncate s_table;
+drop table s_table;
+
+drop database student;
