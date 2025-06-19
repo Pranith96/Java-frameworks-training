@@ -1,8 +1,8 @@
 package com.student.service;
 
-import com.student.entity.Student;
+import com.student.dto.request.StudentRequestDto;
 
 public interface StudentService {
 
-	public String createStudent(Student studentRequest);
+	public String createStudent(StudentRequestDto studentRequest);
 }

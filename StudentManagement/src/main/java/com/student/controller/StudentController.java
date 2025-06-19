@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.student.dto.request.StudentRequestDto;
 import com.student.entity.Student;
 import com.student.service.StudentService;
 
@@ -20,7 +21,7 @@ public class StudentController {
 
 	// http://localhost:2020/student/register
 	@PostMapping("/register")
-	public ResponseEntity<String> registerStudent(@RequestBody Student studentRequest) {
+	public ResponseEntity<String> registerStudent(@RequestBody StudentRequestDto studentRequest) {
 		String response = studentService.createStudent(studentRequest);
 		if (response == null) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Data is not saved");
