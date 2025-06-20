@@ -1,11 +1,14 @@
 package com.student.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.student.dto.request.StudentRequestDto;
+import com.student.dto.response.StudentResponseDto;
 import com.student.entity.Student;
 import com.student.repository.StudentRepository;
 
@@ -35,8 +38,32 @@ public class StudentServiceImpl implements StudentService {
 
 	private String generateStudentCode() {
 		Random random = new Random();
-		int num = random.nextInt(111,9999);
+		int num = random.nextInt(111, 9999);
 		String studentCode = "stu" + num;
 		return studentCode;
+	}
+
+	@Override
+	public List<StudentResponseDto> getAllStudentRecords() {
+		List<Student> studentList = studentRepository.findAll();
+		if (studentList == null) {
+			throw new RuntimeException("Data is empty");
+		}
+		List<StudentResponseDto> students = new ArrayList<>();
+
+		for (Student student : studentList) {
+			StudentResponseDto response = new StudentResponseDto();
+			response.setAge(student.getAge());
+			response.setEmailId(student.getEmailId());
+			response.setGender(student.getGender());
+			response.setId(student.getId());
+			response.setMobileNumber(student.getMobileNumber());
+			response.setName(student.getName());
+			response.setStatus(student.getStatus());
+			response.setStudentCode(student.getStudentCode());
+
+			students.add(response);
+		}
+		return students;
 	}
 }
