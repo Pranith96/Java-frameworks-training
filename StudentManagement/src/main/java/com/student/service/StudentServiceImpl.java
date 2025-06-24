@@ -2,6 +2,7 @@ package com.student.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +67,21 @@ public class StudentServiceImpl implements StudentService {
 		}
 		return students;
 	}
+
+	@Override
+	public Student getStudentRecords(Integer id) {
+		Optional<Student> response = studentRepository.findById(id);
+		if(!response.isPresent()) {
+			throw new RuntimeException("Data is empty");
+		}
+		return response.get();
+	}
+
+	@Override
+	public List<Student> getStudentDataByName(String name) {
+		Optional<List<Student>> response = studentRepository.findByName(name); // emailId, mobileNumber, Status
+		if(!response.isPresent()) {
+			throw new RuntimeException("Data is empty");
+		}
+		return response.get();	}
 }

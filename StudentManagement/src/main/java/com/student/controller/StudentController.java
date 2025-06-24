@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.dto.request.StudentRequestDto;
@@ -37,6 +39,26 @@ public class StudentController {
 	@GetMapping("/list")
 	public ResponseEntity<List<StudentResponseDto>> getAllStudents() {
 		List<StudentResponseDto> response = studentService.getAllStudentRecords();
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
+	@GetMapping("/id")
+	public ResponseEntity<Student> getStudentRecords(@RequestParam("k") Integer id) {
+		Student response = studentService.getStudentRecords(id);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
+	@GetMapping("/id/{id}")
+	public ResponseEntity<Student> getStudentData(@PathVariable("id") Integer id) {
+		Student response = studentService.getStudentRecords(id);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
+	// email,--> RequestParam
+	//mobileNumber, studentCode --> API --> Pathvariable
+	@GetMapping("/name/{name}")
+	public ResponseEntity<List<Student>> getStudentDataByName(@PathVariable("name") String name) {
+		List<Student> response = studentService.getStudentDataByName(name);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 }
