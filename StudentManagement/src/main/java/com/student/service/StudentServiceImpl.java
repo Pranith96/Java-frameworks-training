@@ -7,12 +7,15 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.student.dto.request.StudentDeactivateRequestDto;
 import com.student.dto.request.StudentRequestDto;
 import com.student.dto.response.StudentResponseDto;
 import com.student.entity.Student;
 import com.student.repository.StudentRepository;
 
+@Transactional
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -71,7 +74,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student getStudentRecords(Integer id) {
 		Optional<Student> response = studentRepository.findById(id);
-		if(!response.isPresent()) {
+		if (!response.isPresent()) {
 			throw new RuntimeException("Data is empty");
 		}
 		return response.get();
@@ -80,8 +83,82 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> getStudentDataByName(String name) {
 		Optional<List<Student>> response = studentRepository.findByName(name); // emailId, mobileNumber, Status
-		if(!response.isPresent()) {
+		if (!response.isPresent()) {
 			throw new RuntimeException("Data is empty");
 		}
-		return response.get();	}
+		return response.get();
+	}
+
+	@Override
+	public List<Student> getStudentDataByNameAndStatus(String name, String status) {
+		Optional<List<Student>> response = studentRepository.findByNameAndStatus(name, status); // findByNameOrStatus,
+																								// findByNameAndStatusOrderByNameDesc
+		if (!response.isPresent()) {
+			throw new RuntimeException("Data is empty");
+		}
+		return response.get();
+	}
+
+	@Transactional
+	@Override
+	public String deActivateStudent(String studentCode) {
+		String status = "INACTIVE";
+		studentRepository.updateStudentByStatus(status, studentCode);
+		return "Student Deactivated";
+	}
+
+	@Transactional
+	@Override
+	public String deActivateStudentRecords(StudentDeactivateRequestDto studentCode) {
+		String status = "INACTIVE";
+		List<String> studentCodes = studentCode.getStudentCodes();
+		studentRepository.updateStudentByStatusAndCodes(status, studentCodes);
+		return "Student Deactivated";
+	}
+
+	public Student getStudentByCode(String studentCode) {
+		Optional<Student> response = studentRepository.findByStudentCode(studentCode);
+		if (!response.isPresent()) {
+			throw new RuntimeException("Data is not present");
+		}
+		return response.get();
+	}
+
+	@Transactional
+	@Override
+	public String updateStudent(String studentCode, StudentRequestDto studentRequestDto) {
+		Student currentStudent = getStudentByCode(studentCode);
+
+		if (studentRequestDto.getAge() != null && studentRequestDto.getAge() > 0) {
+			currentStudent.setAge(studentRequestDto.getAge());
+		}
+		if (studentRequestDto.getEmailId() != null) {
+			currentStudent.setEmailId(studentRequestDto.getEmailId());
+		}
+
+		if (studentRequestDto.getGender() != null) {
+			currentStudent.setGender(studentRequestDto.getGender());
+		}
+		if (studentRequestDto.getMobileNumber() != null) {
+			currentStudent.setMobileNumber(studentRequestDto.getMobileNumber());
+		}
+		if (studentRequestDto.getName() != null) {
+			currentStudent.setName(studentRequestDto.getName());
+		}
+
+		Student response = studentRepository.save(currentStudent);
+		if (response == null) {
+			return null;
+		}
+		return "Data updated successfully";
+	}
+
+	@Transactional
+	@Override
+	public String deleteStudentData(Integer id) {
+		Student response = getStudentRecords(id);
+		// studentRepository.deleteById(id); // deleteByName(name),// deleteByStudentCode(code)
+		studentRepository.delete(response);
+		return "Deleted successfully";
+	}
 }
