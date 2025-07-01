@@ -26,4 +26,6 @@ public interface StudentService {
 	public String updateStudent(String studentCode, StudentRequestDto studentRequestDto);
 
 	public String deleteStudentData(Integer id);
+	
+	public Student getStudentByCode(String studentCode);
 }

@@ -82,7 +82,7 @@ public class StudentController {
 	public ResponseEntity<String> deActivateStudentRecords(@RequestBody StudentDeactivateRequestDto studentCode) {
 		String response = studentService.deActivateStudentRecords(studentCode);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
-	}
+	}	
 
 	@PutMapping("/update/{studentCode}")
 	public ResponseEntity<String> updateStudent(@PathVariable("studentCode") String studentCode,

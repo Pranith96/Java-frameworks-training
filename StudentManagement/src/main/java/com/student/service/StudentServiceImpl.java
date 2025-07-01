@@ -13,6 +13,8 @@ import com.student.dto.request.StudentDeactivateRequestDto;
 import com.student.dto.request.StudentRequestDto;
 import com.student.dto.response.StudentResponseDto;
 import com.student.entity.Student;
+import com.student.exception.BusinessException;
+import com.student.exception.StudentNotFoundException;
 import com.student.repository.StudentRepository;
 
 @Transactional
@@ -36,6 +38,7 @@ public class StudentServiceImpl implements StudentService {
 		Student response = studentRepository.save(student);
 		if (response == null) {
 			return null;
+			//throw new BusinessException(String.format("Exception occurred while saving {}", studentRequest));
 		}
 		return "Data saved successfully";
 	}
@@ -51,7 +54,7 @@ public class StudentServiceImpl implements StudentService {
 	public List<StudentResponseDto> getAllStudentRecords() {
 		List<Student> studentList = studentRepository.findAll();
 		if (studentList == null) {
-			throw new RuntimeException("Data is empty");
+			throw new BusinessException(String.format("Data is empty"));
 		}
 		List<StudentResponseDto> students = new ArrayList<>();
 
@@ -75,7 +78,7 @@ public class StudentServiceImpl implements StudentService {
 	public Student getStudentRecords(Integer id) {
 		Optional<Student> response = studentRepository.findById(id);
 		if (!response.isPresent()) {
-			throw new RuntimeException("Data is empty");
+			throw new StudentNotFoundException(String.format("No Records Found for id: %s ", id));
 		}
 		return response.get();
 	}
@@ -84,7 +87,7 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> getStudentDataByName(String name) {
 		Optional<List<Student>> response = studentRepository.findByName(name); // emailId, mobileNumber, Status
 		if (!response.isPresent()) {
-			throw new RuntimeException("Data is empty");
+			throw new StudentNotFoundException(String.format("No Records Found for name: %s", name));
 		}
 		return response.get();
 	}
@@ -94,7 +97,8 @@ public class StudentServiceImpl implements StudentService {
 		Optional<List<Student>> response = studentRepository.findByNameAndStatus(name, status); // findByNameOrStatus,
 																								// findByNameAndStatusOrderByNameDesc
 		if (!response.isPresent()) {
-			throw new RuntimeException("Data is empty");
+			throw new StudentNotFoundException(
+					String.format("No Records Found for name: %s and status: %s ", name, status));
 		}
 		return response.get();
 	}
@@ -116,10 +120,11 @@ public class StudentServiceImpl implements StudentService {
 		return "Student Deactivated";
 	}
 
+	@Override
 	public Student getStudentByCode(String studentCode) {
 		Optional<Student> response = studentRepository.findByStudentCode(studentCode);
 		if (!response.isPresent()) {
-			throw new RuntimeException("Data is not present");
+			throw new StudentNotFoundException(String.format("No Records Found for student code: %s", studentCode));
 		}
 		return response.get();
 	}
@@ -157,7 +162,8 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public String deleteStudentData(Integer id) {
 		Student response = getStudentRecords(id);
-		// studentRepository.deleteById(id); // deleteByName(name),// deleteByStudentCode(code)
+		// studentRepository.deleteById(id); // deleteByName(name),//
+		// deleteByStudentCode(code)
 		studentRepository.delete(response);
 		return "Deleted successfully";
 	}
